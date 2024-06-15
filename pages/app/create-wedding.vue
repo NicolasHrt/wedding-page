@@ -4,9 +4,9 @@ import type { WeddingData } from '~/types'
 
 const weddingData = ref<WeddingData>({
   title: 'Julie & Leo',
-  date: new Date(),
+  date: new Date().toISOString(),
   address: '3 rue des perdrix, Eckbolsheim',
-  color: 'blue',
+  color: 'orange',
   header: {
     title: 'Nous t\'invitons à notre mariage !',
     description: 'Nous avons le plaisir de te convier à notre mariage le 2 mai 2025',
@@ -19,22 +19,19 @@ const weddingData = ref<WeddingData>({
     list: [
       {
         name: '17h - Apéro Time',
-        description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.',
-        icon: 'i-material-symbols-food-bank-outline'
+        description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.'
       },
       {
         name: '17h30 - Cérémonie',
-        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.',
-        icon: 'i-material-symbols-photo-camera-outline'
+        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.'
       },
       {
         name: '18h - Photos de groupe',
-        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.',
-        icon: 'i-material-symbols-photo-camera-outline'
+        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.'
       }
     ]
   },
-  galerie: {
+  gallery: {
     mod: 'grid',
     title: 'Quelques photos du lieux de la cérémonie',
     images: [

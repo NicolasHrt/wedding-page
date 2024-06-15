@@ -17,7 +17,7 @@ export interface BlogPost extends ParsedContent {
 export interface ProgramItem {
   name: string
   description: string
-  icon: string
+
 }
 
 export interface Header {
@@ -33,7 +33,7 @@ export interface Program {
   list: ProgramItem[]
 }
 
-export interface Galerie {
+export interface Gallery {
   mod: string
   title: string
   images: string[]
@@ -47,11 +47,11 @@ export interface Donation {
 
 export interface WeddingData {
   title: string
-  date: Date
+  date: string
   address: string
   color: string
   header: Header
   program: Program
-  galerie: Galerie
+  gallery: Gallery
   donation: Donation
 }

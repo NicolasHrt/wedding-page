@@ -1,14 +1,6 @@
 <template>
-  <div
-    v-if="timeRemaining > 0"
-    class=""
-  >
-    <UButton
-      color="white"
-      size="lg"
-    >
-      In {{ days }} days {{ hours }} Hours {{ minutes }} Minutes and {{ seconds }} secondes
-    </UButton>
+  <div v-if="timeRemaining > 0">
+    <p>{{ days }} jours {{ hours }} heures {{ minutes }} minutes {{ seconds }} secondes</p>
   </div>
   <div v-else>
     <p>Temps écoulé!</p>
@@ -16,10 +8,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+
 // Utilisation de defineProps pour les propriétés
 const props = defineProps<{
   targetDate: string
 }>()
+
+console.log(props.targetDate)
 
 const timeRemaining = ref(0)
 let intervalId: number | null = null
@@ -43,6 +39,7 @@ const seconds = computed(() => {
 const updateCountdown = () => {
   const now = new Date().getTime()
   const countdownDate = new Date(props.targetDate).getTime()
+
   timeRemaining.value = countdownDate - now
 
   if (timeRemaining.value < 0) {
@@ -55,7 +52,7 @@ const updateCountdown = () => {
 
 onMounted(() => {
   updateCountdown()
-  intervalId = window.setInterval(updateCountdown, 1000)
+  intervalId = setInterval(updateCountdown, 1000)
 })
 
 onBeforeUnmount(() => {

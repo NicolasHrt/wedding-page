@@ -3,24 +3,15 @@ import { useClipboard } from '@vueuse/core'
 import type { WeddingData } from '~/types'
 
 const appConfig = useAppConfig()
+
 const weddingData = defineModel<WeddingData>()
 
 appConfig.ui.primary = weddingData.value.color
 
-const isSharing = ref(false)
-const source = ref('')
-const eventTitle = 'Mariage'
-const eventDescription = 'Nous avons le plaisir de te convier à notre mariage le 2 mai 2025'
-
-const calendarUrl = computed(() => {
-  const startDate = new Date(weddingData.value.date)
-  const endDate = new Date(startDate.getTime())
-  endDate.setHours(startDate.getHours() + 2)
-
-  const format = (date: Date) => date.toISOString().replace(/-|:|\.\d+/g, '')
-
-  return `webcal://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${format(startDate)}/${format(endDate)}&details=${encodeURIComponent(eventDescription)}`
+watch(() => weddingData.value.color, (newColor) => {
+  appConfig.ui.primary = newColor
 })
+const isSharing = ref(false)
 
 const formattedEventDate = computed(() => {
   const date = new Date(weddingData.value.date)
@@ -31,6 +22,15 @@ const formattedEventDate = computed(() => {
   })
 })
 
+const formattedEventTime = computed(() => {
+  const date = new Date(weddingData.value.date)
+  return date.toLocaleTimeString('en-EN', {
+    hour: '2-digit',
+    minute: '2-digit'
+  })
+})
+
+const source = ref('')
 const { copy } = useClipboard({ source })
 const toast = useToast()
 
@@ -90,10 +90,10 @@ function copyUrl() {
     </UHeader>
     <ULandingHero
       v-bind="weddingData.header"
-      :links="[{ label: 'See the program', to: '#program', icon: 'i-material-symbols-menu-book-outline', color: 'gray', size: 'lg' }, { label: `Join us on ${formattedEventDate}`, icon: 'i-material-symbols-edit-calendar-outline', to: calendarUrl, size: 'lg' }]"
+      :links="[{ label: 'See the program', to: '#program', icon: 'i-material-symbols-menu-book-outline', color: 'gray', size: 'lg' }, { label: `Join us on ${formattedEventDate} at ${formattedEventTime}`, icon: 'i-material-symbols-edit-calendar-outline', size: 'lg' }]"
     >
       <template #headline>
-        <CountdownTimer :target-date="weddingData.date" />
+        <!--        <CountdownTimer :target-date="weddingData.date" /> -->
       </template>
       <template #default>
         <img
@@ -120,15 +120,15 @@ function copyUrl() {
       <h2
         class="text-center text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl mb-8 sm:mb-14 lg:mb-20"
       >
-        {{ weddingData.galerie.title }}
+        {{ weddingData.gallery.title }}
       </h2>
       <UCarousel
-        v-if="weddingData.galerie.mod === 'carousel'"
+        v-if="weddingData.gallery.mod === 'carousel'"
         v-slot="
           {
             item
           }"
-        :items="weddingData.galerie.images"
+        :items="weddingData.gallery.images"
         :ui="{ item: 'basis-full' }"
 
         arrows
@@ -140,11 +140,11 @@ function copyUrl() {
         >
       </UCarousel>
       <div
-        v-else-if="weddingData.galerie.mod === 'grid'"
+        v-else-if="weddingData.gallery.mod === 'grid'"
         class="column-1 md:columns-2  gap-8 space-y-8"
       >
         <img
-          v-for="image in weddingData.galerie.images"
+          v-for="image in weddingData.gallery.images"
           :key="image"
           class="rounded-lg"
           :src="image"

@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { z } from 'zod'
-import { format } from 'date-fns'
+import VueDatePicker from '@vuepic/vue-datepicker'
 import type { FormSubmitEvent } from '#ui/types'
-import type { WeddingData } from '~/types'
+import type { Gallery, WeddingData } from '~/types'
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const schema = z.object({
   title: z.string().min(1),
   header: z.object({
     title: z.string().min(1),
     description: z.string().min(1)
-  })
+  }),
+  date: z.string()
 
 })
 
@@ -21,6 +23,15 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   // Do something with data
   console.log(event.data)
 }
+
+const headerImage = ref<File | null>(null)
+
+function previewHeaderImage(event: any) {
+  headerImage.value = event[0]
+  if (headerImage.value) {
+    state.value.header.image = URL.createObjectURL(headerImage.value)
+  }
+}
 </script>
 
 <template>
@@ -31,91 +42,167 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
       class="space-y-4"
       @submit="onSubmit"
     >
-      <h2 class="text-2xl font-bold ">
-        Basic information of the weeding
-      </h2>
-      <UFormGroup
-        label="Title"
-        name="title"
-      >
-        <UInput v-model="state.title" />
-      </UFormGroup>
-      <UFormGroup
-        label="Address"
-        name="address"
-      >
-        <UInput v-model="state.address" />
-      </UFormGroup>
-      <div>
-        <p class="block font-medium text-gray-700 dark:text-gray-200 text-sm mb-1">
-          Date
-        </p>
-        <UPopover :popper="{ placement: 'bottom-start' }">
-          <UButton
-            icon="i-heroicons-calendar-days-20-solid"
-            :label="format(state.date, 'd MMM, yyy')"
-          />
-
-          <template #panel="{ close }">
-            <DatePicker
-              v-model="state.date"
-              is-required
-              @close="close"
-            />
-          </template>
-        </UPopover>
-      </div>
-
-      <UDivider />
-      <h2 class="text-2xl font-bold">
-        Header
-      </h2>
-      <UFormGroup
-        label="Title"
-        name="header.title"
-      >
-        <UInput
-          v-model="state.header.title"
-        />
-      </UFormGroup>
-      <UFormGroup
-        label="Description"
-        name="header.description"
-      >
-        <UTextarea
-          v-model="state.header.description"
-        />
-      </UFormGroup>
-      <UFormGroup
-        label="Image"
-        name="header.image"
-      >
-        <UInput
-          type="file"
-          size="sm"
-          icon="i-heroicons-folder"
-          class="mb-4"
-        />
-        <img
-          class="rounded-lg"
-          :src="state.header.image"
-          alt=""
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold ">
+          Basic information of the weeding
+        </h2>
+        <UFormGroup
+          required
+          label="Title"
+          name="title"
         >
-      </UFormGroup>
-      <UFormGroup
-        label="Orientation"
-        name="header.orientation"
-      >
-        <USelect
-          v-model="state.header.orientation"
-          :options="[
-            { label: 'Vertical', value: 'vertical' },
-            { label: 'Horizontal', value: 'horizontal' }
-          ]"
+          <UInput
+            v-model="state.title"
+            placeholder="John & Jane's"
+          />
+        </UFormGroup>
+        <UFormGroup
+          label="Address"
+          name="address"
+        >
+          <UInput v-model="state.address" />
+        </UFormGroup>
+        <div>
+          <UFormGroup
+            label="Date"
+            name="date"
+            required
+          >
+            <VueDatePicker v-model="state.date" />
+          </UFormGroup>
+        </div>
+      </div>
+      <UDivider />
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold ">
+          Styling
+        </h2>
+        <ColorsPicker v-model="state.color" />
+      </div>
+      <UDivider />
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold">
+          Header
+        </h2>
+        <UFormGroup
+          label="Title"
+          name="header.title"
+          required
+        >
+          <UInput
+            v-model="state.header.title"
+          />
+        </UFormGroup>
+        <UFormGroup
+          label="Description"
+          name="header.description"
+          required
+        >
+          <UTextarea
+            v-model="state.header.description"
+          />
+        </UFormGroup>
+        <UFormGroup
+          label="Image"
+          name="header.image"
+        >
+          <UInput
+            type="file"
+            size="sm"
+            icon="i-heroicons-folder"
+            class="mb-4"
+            @change="previewHeaderImage"
+          />
+          <img
+            class="rounded-lg"
+            :src="state.header.image"
+            alt=""
+          >
+        </UFormGroup>
+        <UFormGroup
+          label="Orientation"
+          name="header.orientation"
+        >
+          <USelect
+            v-model="state.header.orientation"
+            :options="[
+              { label: 'Vertical', value: 'vertical' },
+              { label: 'Horizontal', value: 'horizontal' }
+            ]"
+          />
+        </UFormGroup>
+      </div>
+      <UDivider />
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold ">
+          Program
+        </h2>
+
+        <UFormGroup label="Title">
+          <UInput v-model="state.program.title" />
+        </UFormGroup>
+        <UFormGroup label="Description">
+          <UTextarea v-model="state.program.description" />
+        </UFormGroup>
+        <p class="font-medium">
+          List of program :
+        </p>
+        <ul
+          v-auto-animate
+          class="ml-4"
+        >
+          <li
+            v-for="(element, index) in state.program.list"
+            :key="index"
+            class="grid gap-3 mb-4 last:mb-0"
+          >
+            <UFormGroup label="Title">
+              <UInput v-model="element.name" />
+            </UFormGroup>
+            <UFormGroup label="Description">
+              <UTextarea v-model="element.description" />
+            </UFormGroup>
+            <UButton
+              label="Remove program"
+              color="red"
+              block
+              icon="i-heroicons-trash-20-solid"
+              @click="state.program.list.splice(index, 1)"
+            />
+            <UDivider />
+          </li>
+        </ul>
+        <UButton
+          label="Add program"
+          color="black"
+          block
+          icon="i-heroicons-plus-20-solid"
+          @click="state.program.list.push({ name: '', description: '' })"
         />
-      </UFormGroup>
-      <UButton type="submit">
-        Submit
+      </div>
+      <UDivider />
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold ">
+          Photo Galery
+        </h2>
+        <UFormGroup label="Title">
+          <UInput v-model="state.gallery.title" />
+        </UFormGroup>
+        <UFormGroup label="Display mod">
+          <USelect
+            v-model="state.gallery.mod"
+            :options="[
+              { label: 'Carousel', value: 'carousel' },
+              { label: 'Grid', value: 'grid' }
+            ]"
+          />
+        </UFormGroup>
+      </div>
+      <UButton
+        type="submit"
+        size="lg"
+      >
+        Publish
       </UButton>
     </UForm>
   </div>
