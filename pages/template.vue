@@ -1,0 +1,75 @@
+<script setup lang="ts">
+import WeddingTemplate from '~/components/WeddingTemplate.vue'
+import type { WeddingData } from '~/types'
+
+const weddingData = ref<WeddingData>({
+  title: 'Julie & Leo',
+  date: new Date(),
+  address: '3 rue des perdrix, Eckbolsheim',
+  color: 'blue',
+  header: {
+    title: 'Nous t\'invitons à notre mariage !',
+    description: 'Nous avons le plaisir de te convier à notre mariage le 2 mai 2025',
+    image: 'https://picsum.photos/640/360',
+    orientation: 'vertical'
+  },
+  program: {
+    title: 'Programme de la journée',
+    description: 'Ensuite RDV au domaine Imodis à partir de 17h pour la fête',
+    list: [
+      {
+        name: '17h - Apéro Time',
+        description: 'Like Nuxt UI, change the style of any component from your App Config or customize them specifically through the ui prop.',
+        icon: 'i-material-symbols-food-bank-outline'
+      },
+      {
+        name: '17h30 - Cérémonie',
+        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.',
+        icon: 'i-material-symbols-photo-camera-outline'
+      },
+      {
+        name: '18h - Photos de groupe',
+        description: 'Nuxt UI Pro is built with Tailwind CSS, a utility-first CSS framework that allows you to build complex designs with ease.',
+        icon: 'i-material-symbols-photo-camera-outline'
+      }
+    ]
+  },
+  galerie: {
+    mod: 'grid',
+    title: 'Quelques photos du lieux de la cérémonie',
+    images: [
+      'https://picsum.photos/1000/1080?random=1',
+      'https://picsum.photos/1000/1080?random=2',
+      'https://picsum.photos/1920/1080?random=3',
+      'https://picsum.photos/1000/1080?random=4',
+      'https://picsum.photos/1920/1080?random=5',
+      'https://picsum.photos/1920/1080?random=6'
+    ]
+  },
+  donation: {
+    title: 'Donation',
+    description: 'We are not asking for gifts, but if you want to make a donation, we will give it to the association "Les Restos du Coeur"',
+    link: 'https://www.restosducoeur.org'
+  }
+})
+</script>
+
+<template>
+  <div class="grid grid-cols-3">
+    <div class="border-r border-gray-200 dark:border-gray-800 p-4 overflow-auto max-h-screen">
+      <UButton
+        label="Go back to home"
+        to="/"
+        color="gray"
+        icon="i-heroicons-arrow-left-20-solid"
+        class="mb-4"
+      />
+      <WeddingForm v-model="weddingData" />
+    </div>
+    <div class="relative col-span-2 overflow-auto max-h-screen">
+      <WeddingTemplate
+        v-model="weddingData"
+      />
+    </div>
+  </div>
+</template>
