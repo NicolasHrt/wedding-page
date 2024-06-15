@@ -5,7 +5,7 @@ hero:
   title: Build your wedding Page in a few clicks ❤ ️
   orientation: horizontal
   headline:
-    label: Made with Nuxt UI Pro
+    label: Get started today
     to: https://ui.nuxt.com/pro
     icon: i-heroicons-arrow-top-right-on-square-20-solid
   links:
