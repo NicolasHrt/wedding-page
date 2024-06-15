@@ -23,7 +23,7 @@ export interface ProgramItem {
 export interface Header {
   title: string
   description: string
-  image: string
+  image: string | File
   orientation: 'horizontal' | 'vertical'
 }
 
@@ -36,7 +36,7 @@ export interface Program {
 export interface Gallery {
   mod: string
   title: string
-  images: string[]
+  images: string[] | File[]
 }
 
 export interface Donation {

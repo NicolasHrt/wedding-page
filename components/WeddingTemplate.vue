@@ -30,6 +30,29 @@ const formattedEventTime = computed(() => {
   })
 })
 
+const headerImage = ref('')
+const galleryImages = ref([])
+updateImages()
+watch(() => weddingData.value.header.image, updateImages)
+watch(() => weddingData.value.gallery.images, updateImages)
+
+function updateImages() {
+  if (typeof weddingData.value.header.image === 'string') {
+    headerImage.value = weddingData.value.header.image
+  } else {
+    headerImage.value = URL.createObjectURL(weddingData.value.header.image)
+  }
+
+  if (weddingData.value.gallery.images.length > 0) {
+    galleryImages.value = weddingData.value.gallery.images.map((image) => {
+      if (typeof image === 'string') {
+        return image
+      }
+      return URL.createObjectURL(image)
+    })
+  }
+}
+
 const source = ref('')
 const { copy } = useClipboard({ source })
 const toast = useToast()
@@ -97,7 +120,7 @@ function copyUrl() {
       </template>
       <template #default>
         <img
-          :src="weddingData.header.image"
+          :src="headerImage"
           class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
         >
       </template>
@@ -144,7 +167,7 @@ function copyUrl() {
         class="column-1 md:columns-2  gap-8 space-y-8"
       >
         <img
-          v-for="image in weddingData.gallery.images"
+          v-for="image in galleryImages"
           :key="image"
           class="rounded-lg"
           :src="image"
@@ -159,16 +182,8 @@ function copyUrl() {
         :title="weddingData.donation.title"
         :description="weddingData.donation.description"
         :card="false"
-        :links="[{ label: 'Donate', to: weddingData.donation.link, icon: 'i-material-symbols-euro', size: 'md' }]"
+        :links="[{ label: 'Donate', to: weddingData.donation.link, target: '_blank', trailingIcon: 'i-heroicons-arrow-right-20-solid', size: 'md' }]"
       />
     </UContainer>
-    <div class="sticky bottom-4 left-4 hidden">
-      <UButton
-        to="/"
-        color="black"
-        label="Made w/ WeddingPage"
-        trailing-icon="i-heroicons-heart"
-      />
-    </div>
   </div>
 </template>

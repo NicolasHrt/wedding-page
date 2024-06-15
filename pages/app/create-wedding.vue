@@ -46,24 +46,38 @@ const weddingData = ref<WeddingData>({
   donation: {
     title: 'Donation',
     description: 'We are not asking for gifts, but if you want to make a donation, we will give it to the association "Les Restos du Coeur"',
-    link: 'https://www.restosducoeur.org'
+    link: ''
   }
 })
+
+const preview = ref(false)
 </script>
 
 <template>
-  <div class="grid grid-cols-3">
-    <div class="border-r border-gray-200 dark:border-gray-800 p-4 overflow-auto max-h-screen">
-      <UButton
-        label="Go back to home"
-        to="/"
-        color="gray"
-        icon="i-heroicons-arrow-left-20-solid"
-        class="mb-4"
-      />
+  <div class="flex">
+    <div
+      class="basis-1/3 border-r border-gray-200 dark:border-gray-800 p-4 overflow-auto max-h-screen"
+      :class="{ hidden: preview }"
+    >
+      <div class="flex justify-end">
+        <UButton
+          label="Go back to home"
+          to="/"
+          color="gray"
+          icon="i-heroicons-arrow-left-20-solid"
+          class="mb-4"
+        />
+      </div>
       <WeddingForm v-model="weddingData" />
     </div>
-    <div class="relative col-span-2 overflow-auto max-h-screen">
+    <div class="relative flex-1 overflow-auto max-h-screen">
+      <UButton
+        label="Preview"
+        color="gray"
+        icon="i-heroicons-eye-20-solid"
+        class="fixed top-4 left-4 z-[9999]"
+        @click="preview = !preview"
+      />
       <WeddingTemplate
         v-model="weddingData"
       />

@@ -2,7 +2,7 @@
 import { z } from 'zod'
 import VueDatePicker from '@vuepic/vue-datepicker'
 import type { FormSubmitEvent } from '#ui/types'
-import type { Gallery, WeddingData } from '~/types'
+import type { WeddingData } from '~/types'
 import '@vuepic/vue-datepicker/dist/main.css'
 
 const schema = z.object({
@@ -24,13 +24,12 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   console.log(event.data)
 }
 
-const headerImage = ref<File | null>(null)
+const headerImage = ref(state.value.header.image)
 
 function previewHeaderImage(event: any) {
-  headerImage.value = event[0]
-  if (headerImage.value) {
-    state.value.header.image = URL.createObjectURL(headerImage.value)
-  }
+  state.value.header.image = event[0]
+  // @ts-ignore
+  headerImage.value = URL.createObjectURL(state.value.header.image)
 }
 </script>
 
@@ -114,8 +113,9 @@ function previewHeaderImage(event: any) {
             @change="previewHeaderImage"
           />
           <img
+            v-if="headerImage"
             class="rounded-lg"
-            :src="state.header.image"
+            :src="headerImage"
             alt=""
           >
         </UFormGroup>
@@ -195,6 +195,28 @@ function previewHeaderImage(event: any) {
               { label: 'Carousel', value: 'carousel' },
               { label: 'Grid', value: 'grid' }
             ]"
+          />
+        </UFormGroup>
+      </div>
+      <UDivider />
+      <div class="grid gap-4">
+        <h2 class="text-2xl font-bold ">
+          Donation
+        </h2>
+        <UFormGroup label="Title">
+          <UInput
+            v-model="state.donation.title"
+            label="Title"
+          />
+        </UFormGroup>
+        <UFormGroup label="Description">
+          <UTextarea
+            v-model="state.donation.description"
+          />
+        </UFormGroup>
+        <UFormGroup label="Link to the donation">
+          <UInput
+            v-model="state.donation.link"
           />
         </UFormGroup>
       </div>
