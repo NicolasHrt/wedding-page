@@ -2,7 +2,6 @@ export default defineAppConfig({
   ui: {
     primary: 'orange',
     gray: 'zinc',
-
     input: {
       default: {
         size: 'md'
@@ -26,7 +25,7 @@ export default defineAppConfig({
       }
     },
     icons: {
-      // dynamic: true
+      dynamic: true
     }
   }
 })

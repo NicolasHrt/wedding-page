@@ -19,16 +19,11 @@ const links = [{
 
     <template #right>
       <UButton
-        label="Sign in"
-        color="gray"
-        to="/login"
-      />
-      <UButton
         label="Sign up"
         icon="i-heroicons-arrow-right-20-solid"
         trailing
         color="black"
-        to="/signup"
+        to="/login"
         class="hidden lg:flex"
       />
     </template>

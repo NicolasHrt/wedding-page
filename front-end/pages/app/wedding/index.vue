@@ -6,7 +6,7 @@ const weddingData = ref<WeddingData>({
   title: 'Julie & Leo',
   date: new Date().toISOString(),
   address: '3 rue des perdrix, Eckbolsheim',
-  color: 'orange',
+  color: 'violet',
   header: {
     title: 'Nous t\'invitons à notre mariage !',
     description: 'Nous avons le plaisir de te convier à notre mariage le 2 mai 2025',
@@ -62,13 +62,15 @@ const preview = ref(false)
       <div class="flex justify-end">
         <UButton
           label="Go back to home"
-          to="/"
+          to="/app"
           color="gray"
           icon="i-heroicons-arrow-left-20-solid"
           class="mb-4"
         />
       </div>
-      <WeddingForm v-model="weddingData" />
+      <WeddingForm
+        v-model="weddingData"
+      />
     </div>
     <div class="relative flex-1 overflow-auto max-h-screen">
       <UButton

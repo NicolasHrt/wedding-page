@@ -16,6 +16,9 @@ const schema = z.object({
 })
 
 type Schema = z.output<typeof schema>
+const props = defineProps({
+  isEditing: Boolean
+})
 
 const state = defineModel<WeddingData>()
 
@@ -34,7 +37,7 @@ function previewHeaderImage(event: any) {
 </script>
 
 <template>
-  <div class="">
+  <div>
     <UForm
       :schema="schema"
       :state="state"

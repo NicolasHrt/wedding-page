@@ -82,8 +82,6 @@ function copyUrl() {
       </template>
 
       <template #right>
-        <UColorModeButton />
-
         <UButton
           target="_blank"
           icon="i-material-symbols-ios-share"
