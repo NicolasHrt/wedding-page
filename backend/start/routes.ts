@@ -18,6 +18,7 @@
 import { middleware } from '#start/kernel'
 import AuthController from '#controllers/auth_controller'
 import GalleryController from '#controllers/galleries_controller'
+import WeddingController from '#controllers/wedding_controller'
 
 import router from '@adonisjs/core/services/router'
 router.get('/', async () => {
@@ -47,4 +48,13 @@ router.group(() => {
   router.get('galleries/:id', [GalleryController, 'show'])
   router.put('galleries/:id', [GalleryController, 'update'])
   router.delete('galleries/:id', [GalleryController, 'destroy'])
+}).use(middleware.auth())
+
+// WeddingData routes
+router.group(() => {
+  router.get('wedding', [WeddingController, 'index'])
+  router.post('wedding', [WeddingController, 'store'])
+  router.get('wedding/:id', [WeddingController, 'show'])
+  router.put('wedding/:id', [WeddingController, 'update'])
+  router.delete('wedding/:id', [WeddingController, 'destroy'])
 }).use(middleware.auth())

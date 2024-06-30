@@ -34,6 +34,8 @@ function previewHeaderImage(event: any) {
   // @ts-ignore
   headerImage.value = URL.createObjectURL(state.value.header.image)
 }
+
+const isPaying = ref(false)
 </script>
 
 <template>
@@ -226,9 +228,15 @@ function previewHeaderImage(event: any) {
       <UButton
         type="submit"
         size="lg"
+        @click="isPaying = true"
       >
         Publish
       </UButton>
     </UForm>
+    <UModal v-model="isPaying">
+      <div class="p-4">
+        <Paying />
+      </div>
+    </UModal>
   </div>
 </template>

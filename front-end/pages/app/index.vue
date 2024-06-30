@@ -42,7 +42,7 @@ definePageMeta({
             label="Create a new wedding"
             color="black"
             size="xl"
-            @click="isCreating = true"
+            to="/app/wedding/create"
           />
         </div>
       </div>
@@ -54,29 +54,9 @@ definePageMeta({
           label="Create a new wedding"
           block
           size="xl"
-          @click="isCreating = true"
+          to="/app/wedding/create"
         />
       </div>
-      <UModal v-model="isCreating">
-        <div class="p-4">
-          <UFormGroup
-            label="Name for the URL"
-            required
-          >
-            <UInput
-              label="Name"
-              placeholder="julie-leo"
-            />
-          </UFormGroup>
-
-          <UButton
-            label="Create"
-            block
-            class="mt-4"
-            to="/app/wedding"
-          />
-        </div>
-      </UModal>
     </div>
   </div>
 </template>

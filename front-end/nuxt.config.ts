@@ -45,5 +45,10 @@ export default defineNuxtConfig({
         braceStyle: '1tbs'
       }
     }
+  },
+  runtimeConfig: {
+    public: {
+      apiUrl: process.env.API_URL
+    }
   }
 })
