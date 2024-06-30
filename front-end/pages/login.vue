@@ -27,6 +27,7 @@ useSeoMeta({
           color="gray"
           label="with Google"
           size="xl"
+          to="http://localhost:3333/google/redirect"
         />
       </div>
       <img

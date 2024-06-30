@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import AccountDropdown from '~/components/AccountDropdown.vue'
+
 const links = [{
   label: 'Dashboard',
   to: '/app'
@@ -11,6 +13,8 @@ const links = [{
       <h1>Wedding page</h1>
     </template>
 
-    <template #right />
+    <template #right>
+      <AccountDropdown />
+    </template>
   </UHeader>
 </template>

@@ -2,6 +2,10 @@
 import WeddingTemplate from '~/components/WeddingTemplate.vue'
 import type { WeddingData } from '~/types'
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const weddingData = ref<WeddingData>({
   title: 'Julie & Leo',
   date: new Date().toISOString(),

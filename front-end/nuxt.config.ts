@@ -10,7 +10,8 @@ export default defineNuxtConfig({
     '@nuxthq/studio',
     '@vueuse/nuxt',
     'nuxt-og-image',
-    '@formkit/auto-animate/nuxt'
+    '@formkit/auto-animate/nuxt',
+    '@pinia/nuxt'
   ],
   hooks: {
     // Define `@nuxt/ui` components as global to use them in `.md` (feel free to add those you need)

@@ -2,6 +2,10 @@
 import WeddingTemplate from '~/components/WeddingTemplate.vue'
 import type { WeddingData } from '~/types'
 
+definePageMeta({
+  middleware: ['auth']
+})
+
 const route = useRoute()
 const id = ref(route.params.id)
 const weddingData = ref<WeddingData>({
