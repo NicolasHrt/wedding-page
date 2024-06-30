@@ -7,12 +7,12 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', { defa
 provide('navigation', navigation)
 
 const appConfig = useAppConfig()
-appConfig.ui.primary = 'red'
+appConfig.ui.primary = 'violet'
 </script>
 
 <template>
   <div>
-    <AppHeader />
+    <LandingHeader />
 
     <UMain>
       <slot />

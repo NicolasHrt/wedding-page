@@ -10,7 +10,7 @@ hero:
     icon: i-heroicons-arrow-top-right-on-square-20-solid
   links:
     - label: Start building your page now
-      to: '/signup'
+      to: '/app'
       size: xl
       icon: i-heroicons-arrow-right-20-solid
       trailing: true

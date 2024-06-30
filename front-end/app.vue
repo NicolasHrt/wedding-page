@@ -29,7 +29,7 @@ useSeoMeta({
   <div>
     <NuxtLoadingIndicator />
 
-    <NuxtLayout>
+      <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
 
