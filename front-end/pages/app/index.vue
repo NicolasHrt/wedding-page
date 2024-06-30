@@ -14,10 +14,9 @@ const weddings = [
   }
 ]
 
-const isCreating = ref(false)
-
 definePageMeta({
-  layout: 'app'
+  layout: 'app',
+  middleware: ['auth']
 })
 </script>
 

@@ -28,7 +28,7 @@ export const useUserStore = defineStore({
     },
 
     async logOut() {
-      await $fetch(`${useRuntimeConfig().public.apiUrl}/auth/sign-out`, {
+      await $fetch(`${useRuntimeConfig().public.apiUrl}/logout`, {
         method: 'POST', credentials: 'include'
       })
       this.isLogged = false

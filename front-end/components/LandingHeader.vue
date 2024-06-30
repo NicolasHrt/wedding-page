@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { NavItem } from '@nuxt/content/dist/runtime/types'
+import { useUserStore } from '~/store/user'
 
 const navigation = inject<Ref<NavItem[]>>('navigation', ref([]))
 
@@ -7,6 +8,8 @@ const links = [{
   label: 'Blog',
   to: '/blog'
 }]
+
+const user = useUserStore()
 </script>
 
 <template>
@@ -19,6 +22,12 @@ const links = [{
 
     <template #right>
       <UButton
+        v-if="user.isLogged"
+        label="Dashboard"
+        to="/app"
+      />
+      <UButton
+        v-else
         label="Sign up"
         icon="i-heroicons-arrow-right-20-solid"
         trailing

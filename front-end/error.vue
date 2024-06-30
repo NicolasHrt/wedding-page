@@ -28,8 +28,7 @@ provide('navigation', navigation)
 
 <template>
   <div>
-    <AppHeader />
-
+    <LandingHeader />
     <UMain>
       <UContainer>
         <UPage>
