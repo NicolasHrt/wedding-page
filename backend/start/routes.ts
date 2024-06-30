@@ -1,0 +1,50 @@
+/*
+|--------------------------------------------------------------------------
+| Routes file
+|--------------------------------------------------------------------------
+|
+| The routes file is used for defining the HTTP routes.
+|
+*/
+
+/*
+|--------------------------------------------------------------------------
+| Routes file
+|--------------------------------------------------------------------------
+|
+| The routes file is used for defining the HTTP routes.
+|
+*/
+import { middleware } from '#start/kernel'
+import AuthController from '#controllers/auth_controller'
+import GalleryController from '#controllers/galleries_controller'
+
+import router from '@adonisjs/core/services/router'
+router.get('/', async () => {
+  return {
+    hello: 'world',
+
+  }
+})
+
+router.get('/google/redirect', [AuthController, 'googleRedirect'])
+router.get('/google/callback', [AuthController, 'googleCallback'])
+router.get('/auth', async ({ auth }) => {
+    return auth.user!
+  })
+  .use(middleware.auth())
+
+router.get('logout', async ({ auth, response }) => {
+    await auth.use('web').logout()
+    return response.redirect('/')
+  })
+  .use(middleware.auth())
+
+  // Gallery routes
+router.group(() => {
+  router.get('galleries', [GalleryController, 'index'])
+  router.post('galleries', [GalleryController, 'store'])
+  router.get('galleries/:id', [GalleryController, 'show'])
+  router.put('galleries/:id', [GalleryController, 'update'])
+  router.delete('galleries/:id', [GalleryController, 'destroy'])
+}).use(middleware.auth())

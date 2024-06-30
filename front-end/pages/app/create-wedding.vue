@@ -6,7 +6,7 @@ const weddingData = ref<WeddingData>({
   title: 'Julie & Leo',
   date: new Date().toISOString(),
   address: '3 rue des perdrix, Eckbolsheim',
-  color: 'orange',
+  color: 'red',
   header: {
     title: 'Nous t\'invitons à notre mariage !',
     description: 'Nous avons le plaisir de te convier à notre mariage le 2 mai 2025',
