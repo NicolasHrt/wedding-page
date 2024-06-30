@@ -69,7 +69,7 @@ definePageMeta({
         </time>
       </template>
 
-      <div class="flex flex-wrap items-center gap-3 mt-4">
+      <div class="hidden flex flex-wrap items-center gap-3 mt-4">
         <UButton
           v-for="(author, index) in post.authors"
           :key="index"

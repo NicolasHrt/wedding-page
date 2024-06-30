@@ -1,33 +1,33 @@
 title: Wedding Page
-description: Nuxt UI Pro is a collection of premium Vue components built on top of Nuxt UI to create beautiful & responsive Nuxt applications in minutes.
+description: Easily create your wedding page with customizable features.
 navigation: false
 hero:
-  title: Build your wedding Page in a few clicks ❤ ️
-  orientation: horizontal
+  title: Your Perfect Wedding Page in Minutes!
+  orientation: vertical
   headline:
     label: Get started today
-    to: https://ui.nuxt.com/pro
+    to: '/app'
     icon: i-heroicons-arrow-top-right-on-square-20-solid
   links:
-    - label: Start building your page now
+    - label: Start building your page now for free
       to: '/app'
       size: xl
       icon: i-heroicons-arrow-right-20-solid
       trailing: true
 sections:
-  - title: The speed of our service
-    description: Cillum sint enim excepteur ut deserunt qui nisi in deserunt in. Deserunt aliquip quis aliquip eu quis ex velit velit nostrud sit.
+  - title: Why create a wedding page?
+    description: Create your wedding page in minutes with our intuitive interface.
     align: right
     features:
-      - name: Fast
-        description: Qui reprehenderit nostrud dolore nisi ad fugiat labore eiusmod.
+      - name: Communication
+        description: Share your wedding details with your guests.
         icon: i-heroicons-rocket-launch
-      - name: Affordable
-        description: Reprehenderit fugiat elit in do ipsum ut pariatur.
+      - name: Donation
+        description: Link to your donation page.
         icon: i-heroicons-currency-dollar
-      - name: Scalable
-        description: Lorem deserunt et eiusmod. Ea in consectetur minim officia.
-        icon: i-heroicons-chart-bar
+      - name: Photos
+        description: Captivate your guests with stunning photos!
+        icon: i-material-symbols-add-a-photo-outline-sharp
     links:
       - label: Learn more
         to: /pro/guide/content
@@ -38,75 +38,17 @@ sections:
         class: ml-8
 pricing:
   title: Start building your page today
-  description: Culpa consectetur dolor pariatur commodo aliqua amet tempor nisi enim deserunt elit cillum.
+  description: Choose the plan that suits you and get started immediately.
   align: center
   plans:
-    - title: One Page
-      description: A basic plan for individuals.
-      price: $19,99
-      cycle: one time
+    - title: Basic Plan
+      description: A simple solution to create your page.
+      price: $49.99
+      cycle: one-time
       button:
         label: Start for free
       features:
-        - 1 GB Storage
-        - 1 Email Account
-        - 1 Domain
-        - 1 Website
-        - 1 Database
-        - 1 SSL Certificate
-        - 1 Support Ticket
-testimonials:
-  headline: Testimonials
-  title: What our customers are saying.
-  description: Proident sunt exercitation minim laborum enim laboris labore esse.
-  items:
-    - quote: Nostrud tempor sunt fugiat. Dolor in sint dolore labore non occaecat adipisicing Lorem labore ullamco enim excepteur. In fugiat Lorem sit velit id veniam esse eiusmod non ea voluptate cupidatat reprehenderit ullamco dolore. Mollit laborum occaecat aliquip.
-      author:
-        name: Rose Roberson
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=1
-          loading: lazy
-    - quote: Eiusmod dolor aute ut nulla pariatur officia consequat aute amet exercitation.
-      author:
-        name: Chace Rodgers
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=7
-          loading: lazy
-    - quote: Id duis velit enim officia ad nisi incididunt magna ex dolor minim deserunt dolor. Esse incididunt cillum nostrud esse do quis amet labore amet nulla eiusmod amet nulla Lorem. Incididunt ex voluptate irure officia laboris ea proident est qui.
-      author:
-        name: Cornelius Sheppard
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=3
-          loading: lazy
-    - quote: Velit consectetur in adipisicing culpa eiusmod commodo eu ex dolore. Officia irure nisi dolor dolore velit fugiat. Aliqua sint aliqua aute elit eu sunt.
-      author:
-        name: Destinee Woods
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=5
-          loading: lazy
-    - quote: Proident quis deserunt qui ex exercitation veniam id Lorem est cupidatat ipsum irure aliquip ad.
-      author:
-        name: Kaleb Mccormick
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=8
-          loading: lazy
-    - quote: Magna officia quis ea ea in officia non voluptate ipsum culpa do labore sunt. Aute est dolore commodo sint officia ad laboris dolor magna aliquip exercitation tempor commodo.
-      author:
-        name: Jazmin Mccall
-        description: CEO at Company
-        avatar:
-          src: https://i.pravatar.cc/120?img=9
-          loading: lazy
-cta:
-  title: Get started today
-  description: Nisi mollit id aliquip sunt est laborum sit sit.
-  links:
-    - label: Buy now
-      size: xl
-      color: black
-      to: /pricing
+        - 1 Page Fully Customizable
+        - Share your page with your guests
+        - Link to your donation page
+

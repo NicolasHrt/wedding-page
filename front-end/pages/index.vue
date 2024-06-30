@@ -34,7 +34,7 @@ definePageMeta({
       </template>
       <template #default>
         <img
-          src="https://picsum.photos/640/360"
+          src="/img/Wedding_Image_1.png"
           class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
         >
       </template>
@@ -48,7 +48,10 @@ definePageMeta({
       :align="section.align"
       :features="section.features"
     >
-      <ImagePlaceholder />
+      <img
+        src="/img/Wedding_Image_1.png"
+        class="w-full rounded-md shadow-xl ring-1 ring-gray-300 dark:ring-gray-700"
+      >
     </ULandingSection>
 
     <UContainer id="pricing">
@@ -63,29 +66,31 @@ definePageMeta({
       </div>
     </UContainer>
 
-    <ULandingSection
-      :headline="page.testimonials.headline"
-      :title="page.testimonials.title"
-      :description="page.testimonials.description"
-    >
-      <UPageColumns class="xl:columns-4">
-        <div
-          v-for="(testimonial, index) in page.testimonials.items"
-          :key="index"
-          class="break-inside-avoid"
-        >
-          <ULandingTestimonial
-            v-bind="testimonial"
-            class="bg-gray-100/50 dark:bg-gray-800/50"
-          />
-        </div>
-      </UPageColumns>
-    </ULandingSection>
+    <!--    <ULandingSection -->
+    <!--      :headline="page.testimonials.headline" -->
+    <!--      :title="page.testimonials.title" -->
+    <!--      :description="page.testimonials.description" -->
+    <!--    > -->
+    <!--      <UPageColumns class="xl:columns-4"> -->
+    <!--        <div -->
+    <!--          v-for="(testimonial, index) in page.testimonials.items" -->
+    <!--          :key="index" -->
+    <!--          class="break-inside-avoid" -->
+    <!--        > -->
+    <!--          <ULandingTestimonial -->
+    <!--            v-bind="testimonial" -->
+    <!--            class="bg-gray-100/50 dark:bg-gray-800/50" -->
+    <!--          /> -->
+    <!--        </div> -->
+    <!--      </UPageColumns> -->
+    <!--    </ULandingSection> -->
 
     <ULandingSection>
       <ULandingCTA
-        v-bind="page.cta"
-        class="bg-gray-100/50 dark:bg-gray-800/50"
+        title="Trusted and supported by our amazing community"
+        description="We've built a strong, lasting partnership. Their trust is our driving force, propelling us towards shared success."
+        card
+        :links="[{ label: 'Get started', color: 'black', size: 'xl' }]"
       />
     </ULandingSection>
   </div>
