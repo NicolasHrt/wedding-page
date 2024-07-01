@@ -16,6 +16,7 @@
 |
 */
 import { middleware } from '#start/kernel'
+
 const AuthController = () => import('#controllers/auth_controller')
 const GalleryController = () => import('#controllers/galleries_controller')
 const WeddingController = () => import('#controllers/wedding_controller')
@@ -64,3 +65,8 @@ router
     router.delete('wedding/:id', [WeddingController, 'destroy'])
   })
   .use(middleware.auth())
+
+router.post('confirmed-payement', async ({ response, request }) => {
+  console.log(request.all())
+  return response.created()
+})

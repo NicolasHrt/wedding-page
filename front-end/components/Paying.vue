@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useUserStore } from '~/store/user'
+
+const user = useUserStore()
+
 const urlValidate = ref(false)
 const url = ref('')
 const urlError = ref('')
@@ -44,14 +48,15 @@ function validateUrl() {
     <div v-else>
       <div class="mb-4">
         <p class="text-2xl font-bold">
-          Your URL will be <span class="text-violet-500">http://localhost:3000/{{ url }}</span>
+          Your sharing URL will be : <br> <span class="text-violet-500">http://localhost:3000/{{ url }}</span>
         </p>
       </div>
       <UPricingCard
-        title="Starter"
-        description="For small projects"
-        price="49.99€"
-        :button="{ label: 'Pay to publish', to: `https://nicolasharter.lemonsqueezy.com/buy/706d460b-56f8-495a-8e65-5529161312f3` }"
+        title="One wedding page"
+        description="Publish your wedding page on the internet"
+        price="
+        49.99€"
+        :button="{ label: 'Pay to publish', to: `https://nicolasharter.lemonsqueezy.com/buy/706d460b-56f8-495a-8e65-5529161312f3?checkout[custom][user_id]=${user.data.id}&checkout[custom][url_slug]=${url}` }"
       />
     </div>
   </div>
