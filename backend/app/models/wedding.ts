@@ -4,8 +4,9 @@ import type { BelongsTo } from '@adonisjs/lucid/types/relations'
 
 import User from '#models/user'
 import Gallery from '#models/gallery'
-import Program from './program.js'
-import Donation from './donation.js'
+import Program from '#models/program'
+import Donation from '#models/donation'
+
 export default class Wedding extends BaseModel {
   @column({ isPrimary: true })
   declare id: number

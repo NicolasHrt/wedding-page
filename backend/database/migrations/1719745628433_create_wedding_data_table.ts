@@ -14,7 +14,7 @@ export default class extends BaseSchema {
       table.integer('gallery_id').unsigned().references('id').inTable('galleries').onDelete('CASCADE')
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.integer('program_id').unsigned().references('id').inTable('programs').onDelete('CASCADE')
-      table.integer('donation_id').unsigned().references('id').inTable('donation').onDelete('CASCADE')
+      table.integer('donation_id').unsigned().references('id').inTable('donations').onDelete('CASCADE')
       table.timestamp('created_at')
       table.timestamp('updated_at')
     })

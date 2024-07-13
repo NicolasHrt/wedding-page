@@ -21,6 +21,9 @@ export default class ProgramItem extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime
 
+  @column()
+  declare programId: number
+
   @belongsTo(() => Program)
   declare program: BelongsTo<typeof Program>
 }
