@@ -10,8 +10,7 @@ const schema = z.object({
   header: z.object({
     title: z.string().min(1),
     description: z.string().min(1)
-  }),
-  date: z.string()
+  })
 
 })
 
@@ -21,10 +20,15 @@ const props = defineProps({
 })
 
 const state = defineModel<WeddingData>()
+const toast = useToast()
 
 async function onSubmit(event: FormSubmitEvent<Schema>) {
   // Do something with data
   console.log(event.data)
+  toast.add({
+    icon: 'i-heroicons-check',
+    title: 'Document Saved'
+  })
 }
 
 const headerImage = ref(state.value.header.image)
@@ -225,13 +229,24 @@ const isPaying = ref(false)
           />
         </UFormGroup>
       </div>
-      <UButton
-        type="submit"
-        size="lg"
-        @click="isPaying = true"
-      >
-        Publish
-      </UButton>
+      <div class="gap-2 flex">
+        <UButton
+          type="submit"
+          size="lg"
+          color="black"
+          trailing-icon="i-material-symbols-file-save"
+        >
+          Save
+        </UButton>
+        <UButton
+          type="submit"
+          size="lg"
+          trailing-icon="i-material-symbols-publish"
+          @click="isPaying = true"
+        >
+          Publish
+        </UButton>
+      </div>
     </UForm>
     <UModal v-model="isPaying">
       <div class="p-4">
